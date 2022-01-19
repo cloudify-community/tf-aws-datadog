@@ -1,0 +1,42 @@
+#!/bin/bash
+
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${dd_api_key} DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+
+echo 'tags: ["app:${app_name}"]' >> /etc/datadog-agent/datadog.yaml
+
+apt install -y nginx
+
+cat >/etc/nginx/conf.d/status.conf <<EOF
+
+server {
+  listen 81;
+  server_name localhost;
+
+  access_log off;
+  allow 127.0.0.1;
+  deny all;
+
+  location /nginx_status {
+    # Choose your status module
+
+    # freely available with open source NGINX
+    stub_status;
+
+    # for open source NGINX < version 1.7.5
+    # stub_status on;
+
+    # available only with NGINX Plus
+    # status;
+
+    # ensures the version information can be retrieved
+    server_tokens on;
+  }
+}
+EOF
+
+mv /etc/datadog-agent/conf.d/nginx.d/conf.yaml.example /etc/datadog-agent/conf.d/nginx.d/conf.yaml
+
+curl https://cfy-anthony.s3.amazonaws.com/index.html > /var/www/html/index.html
+
+systemctl restart nginx
+systemctl restart datadog-agent

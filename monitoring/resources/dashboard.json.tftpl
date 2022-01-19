@@ -1,0 +1,237 @@
+{
+    "title": "Web Performance Dashboard - ${app_name}",
+    "description": "",
+    "widgets": [
+      {
+        "id": 2632409688357386,
+        "definition": {
+          "title": "NGINX Total Requests Per Second",
+          "title_size": "16",
+          "title_align": "left",
+          "show_legend": true,
+          "legend_layout": "auto",
+          "legend_columns": [
+            "avg",
+            "min",
+            "max",
+            "value",
+            "sum"
+          ],
+          "type": "timeseries",
+          "requests": [
+            {
+              "formulas": [
+                {
+                  "formula": "query1"
+                }
+              ],
+              "response_format": "timeseries",
+              "queries": [
+                {
+                  "query": "sum:nginx.net.request_per_s{app:${app_name}}",
+                  "data_source": "metrics",
+                  "name": "query1"
+                }
+              ],
+              "style": {
+                "palette": "dog_classic",
+                "line_type": "solid",
+                "line_width": "normal"
+              },
+              "display_type": "line"
+            }
+          ],
+          "yaxis": {
+            "include_zero": true,
+            "scale": "linear",
+            "label": "",
+            "min": "auto",
+            "max": "auto"
+          },
+          "markers": []
+        },
+        "layout": {
+          "x": 0,
+          "y": 0,
+          "width": 4,
+          "height": 2
+        }
+      },
+      {
+        "id": 2385572635052530,
+        "definition": {
+          "title": "CPU",
+          "title_size": "16",
+          "title_align": "left",
+          "show_legend": true,
+          "legend_layout": "auto",
+          "legend_columns": [
+            "avg",
+            "min",
+            "max",
+            "value",
+            "sum"
+          ],
+          "type": "timeseries",
+          "requests": [
+            {
+              "formulas": [
+                {
+                  "formula": "query1"
+                }
+              ],
+              "response_format": "timeseries",
+              "queries": [
+                {
+                  "query": "avg:system.cpu.user{app:${app_name}} by {host}",
+                  "data_source": "metrics",
+                  "name": "query1"
+                }
+              ],
+              "style": {
+                "palette": "dog_classic",
+                "line_type": "solid",
+                "line_width": "normal"
+              },
+              "display_type": "line"
+            }
+          ],
+          "yaxis": {
+            "include_zero": true,
+            "scale": "linear",
+            "label": "",
+            "min": "auto",
+            "max": "auto"
+          },
+          "markers": []
+        },
+        "layout": {
+          "x": 4,
+          "y": 0,
+          "width": 4,
+          "height": 2
+        }
+      },
+      {
+        "id": 8646698233249321,
+        "definition": {
+          "title": "Memory Percent Used",
+          "title_size": "16",
+          "title_align": "left",
+          "show_legend": true,
+          "legend_layout": "auto",
+          "legend_columns": [
+            "avg",
+            "min",
+            "max",
+            "value",
+            "sum"
+          ],
+          "type": "timeseries",
+          "requests": [
+            {
+              "formulas": [
+                {
+                  "alias": "Percent Used",
+                  "formula": "query2 / query1 * 100"
+                }
+              ],
+              "response_format": "timeseries",
+              "queries": [
+                {
+                  "query": "avg:system.mem.used{app:${app_name}} by {host}",
+                  "data_source": "metrics",
+                  "name": "query2"
+                },
+                {
+                  "query": "avg:system.mem.total{app:${app_name}} by {host}",
+                  "data_source": "metrics",
+                  "name": "query1"
+                }
+              ],
+              "style": {
+                "palette": "dog_classic",
+                "line_type": "solid",
+                "line_width": "normal"
+              },
+              "display_type": "line"
+            }
+          ],
+          "yaxis": {
+            "include_zero": true,
+            "scale": "linear",
+            "label": "",
+            "min": "auto",
+            "max": "auto"
+          },
+          "markers": []
+        },
+        "layout": {
+          "x": 8,
+          "y": 0,
+          "width": 4,
+          "height": 2
+        }
+      },
+      {
+        "id": 4512147690173855,
+        "definition": {
+          "title": "NGINX Requests Per Host",
+          "title_size": "16",
+          "title_align": "left",
+          "show_legend": true,
+          "legend_layout": "auto",
+          "legend_columns": [
+            "avg",
+            "min",
+            "max",
+            "value",
+            "sum"
+          ],
+          "type": "timeseries",
+          "requests": [
+            {
+              "formulas": [
+                {
+                  "formula": "query1"
+                }
+              ],
+              "response_format": "timeseries",
+              "queries": [
+                {
+                  "query": "avg:nginx.net.request_per_s{app:${app_name}} by {host}",
+                  "data_source": "metrics",
+                  "name": "query1"
+                }
+              ],
+              "style": {
+                "palette": "dog_classic",
+                "line_type": "solid",
+                "line_width": "normal"
+              },
+              "display_type": "line"
+            }
+          ],
+          "yaxis": {
+            "include_zero": true,
+            "scale": "linear",
+            "label": "",
+            "min": "auto",
+            "max": "auto"
+          },
+          "markers": []
+        },
+        "layout": {
+          "x": 0,
+          "y": 2,
+          "width": 4,
+          "height": 2
+        }
+      }
+    ],
+    "template_variables": [],
+    "layout_type": "ordered",
+    "is_read_only": false,
+    "notify_list": [],
+    "reflow_type": "fixed"
+  }
