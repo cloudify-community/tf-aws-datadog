@@ -7,10 +7,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3.0"
     }
-    github = {
-      source  = "integrations/github"
-      version = "~> 4.0"
-    }
   }
 }
 
@@ -23,8 +19,4 @@ provider "aws" {
 provider "datadog" {
   api_key = var.datadog_api_key
   app_key = var.datadog_app_key
-}
-
-provider "github" {
-  token = var.github_token
 }

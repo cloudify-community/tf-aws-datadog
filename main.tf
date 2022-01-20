@@ -30,13 +30,3 @@ module "monitoring_dashboard" {
 
     app_name = var.app_name
 }
-
-module "repository" {
-    source = "./repository"
-
-    app_name          = var.app_name
-    github_token      = var.github_token
-    cloudify_host     = var.cloudify_host
-    cloudify_user     = var.cloudify_user
-    cloudify_password = var.cloudify_password
-}
