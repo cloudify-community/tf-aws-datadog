@@ -4,8 +4,8 @@ resource "github_repository" "repo" {
   visibility = "public"
 
   template {
-    owner      = "acritelli"
-    repository = "cfy-terraform-demo"
+    owner      = "cloudify-community"
+    repository = "tf-aws-datadog"
   }
 }
 
