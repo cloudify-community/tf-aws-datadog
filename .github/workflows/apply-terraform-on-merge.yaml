@@ -1,0 +1,26 @@
+name: Apply Terraform on Merge
+on:
+  push:
+    branches: [ main ]
+jobs:
+  terraform-apply:
+    runs-on: ubuntu-latest
+    steps:
+      - id: set_zipfile_url
+        run: |
+          echo "::set-output name=zip_link::$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/archive/$GITHUB_REF.zip"
+      - name: Execute terraform apply
+        id: terraform_apply
+        uses: cloudify-cosmo/terraform-apply-action@v1.2
+        with:
+          environment-name: $APP_NAME
+          module-file: "${{ steps.set_zipfile_url.outputs.zip_link }}"
+          module-source-path: "./"
+
+env:
+  CLOUDIFY_HOST: ${{ secrets.CLOUDIFY_HOST }}
+  CLOUDIFY_USERNAME: ${{ secrets.CLOUDIFY_USERNAME }}
+  CLOUDIFY_PASSWORD: ${{ secrets.CLOUDIFY_PASSWORD }}
+  CLOUDIFY_TENANT: ${{ secrets.CLOUDIFY_TENANT }}
+  CLOUDIFY_SSL: ${{ secrets.CLOUDIFY_SSL }}
+  APP_NAME: ${{ secrets.APP_NAME }}

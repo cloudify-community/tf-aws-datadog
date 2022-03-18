@@ -1,0 +1,23 @@
+name: Execute Terraform commands from PR
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  handle-pr-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - id: handle_comment
+        name: Handle comment on PR
+        uses: ahmadiesa-abu/cloudify-comment-action@v1.0
+        with:
+          comment: "${{ github.event.comment.body }}"
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          environment-name: $APP_NAME
+          module-source-path: "./"
+env:
+  CLOUDIFY_HOST: ${{ secrets.CLOUDIFY_HOST }}
+  CLOUDIFY_USERNAME: ${{ secrets.CLOUDIFY_USERNAME }}
+  CLOUDIFY_PASSWORD: ${{ secrets.CLOUDIFY_PASSWORD }}
+  CLOUDIFY_TENANT: ${{ secrets.CLOUDIFY_TENANT }}
+  CLOUDIFY_SSL: ${{ secrets.CLOUDIFY_SSL }}
+  APP_NAME: ${{ secrets.APP_NAME }}
