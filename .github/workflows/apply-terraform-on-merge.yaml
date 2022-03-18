@@ -4,6 +4,7 @@ on:
     branches: [ main ]
 jobs:
   terraform-apply:
+    if: "!contains(github.event.head_commit.message, 'Initial commit')"
     runs-on: ubuntu-latest
     steps:
       - id: set_zipfile_url

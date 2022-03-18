@@ -1,35 +1,35 @@
 variable "aws_access_key" {
-    type = string
+  type = string
 }
 
 variable "aws_secret_key" {
-    type = string
+  type = string
 }
 
 variable "datadog_api_key" {
-    type = string
+  type = string
 }
 
 variable "datadog_app_key" {
-    type = string
+  type = string
 }
 
 variable "app_name" {
-    type = string
+  type = string
 }
 
 variable "github_token" {
-    type = string
+  type = string
 }
 
 variable "cloudify_host" {
-    type = string
+  type = string
 }
 
 variable "cloudify_user" {
-    type = string
+  type = string
 }
 
 variable "cloudify_password" {
-    type = string
+  type = string
 }

@@ -2,6 +2,7 @@ resource "github_repository" "repo" {
   name        = "${var.app_name}-repository"
 
   visibility = "public"
+  auto_init  = false
 
   template {
     owner      = "cloudify-community"
