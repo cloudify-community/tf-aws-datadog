@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${dd_api_key} DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${dd_api_key} DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 
-# echo 'tags: ["app:${app_name}"]' >> /etc/datadog-agent/datadog.yaml
+echo 'tags: ["app:${app_name}"]' >> /etc/datadog-agent/datadog.yaml
 
 apt install -y nginx
 
@@ -34,9 +34,9 @@ server {
 }
 EOF
 
-# mv /etc/datadog-agent/conf.d/nginx.d/conf.yaml.example /etc/datadog-agent/conf.d/nginx.d/conf.yaml
+mv /etc/datadog-agent/conf.d/nginx.d/conf.yaml.example /etc/datadog-agent/conf.d/nginx.d/conf.yaml
 
 curl https://cfy-anthony.s3.amazonaws.com/index.html > /var/www/html/index.html
 
 systemctl restart nginx
-# systemctl restart datadog-agent
+systemctl restart datadog-agent
