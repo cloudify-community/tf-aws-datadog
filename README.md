@@ -17,6 +17,7 @@ The module takes the following variables.
 * `aws_secret_key` - AWS secret key used for authentication
 * `datadog_api_key` - Datadog API key. Used for authentication and agent configuration
 * `datadog_app_key` - Datadog app key. Used for authentication and agent configuration
+* `datadog_api_url` - URL for the Datadog API (e.g., if using the EU region, specify https://api.datadoghq.eu/)
 * `github_token` - GitHub token. Used to create repository
 * `cloudify_host` - The host of the Cloudify manager. Used to configure secrets in the GitHub repository
 * `cloudify_user` - A user to authenticate with the Cloudify manager. Used to configure secrets in the GitHub repository
