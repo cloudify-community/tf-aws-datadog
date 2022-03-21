@@ -8,7 +8,7 @@ jobs:
     steps:
       - id: handle_comment
         name: Handle comment on PR
-        uses: ahmadiesa-abu/cloudify-comment-action@v1.0
+        uses: cloudify-cosmo/cloudify-comment-action@v1.2
         with:
           comment: "${{ github.event.comment.body }}"
           github_token: "${{ secrets.GITHUB_TOKEN }}"
